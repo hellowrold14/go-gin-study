@@ -11,7 +11,9 @@ func InitRouter(r *gin.Engine) {
 	groupV1 := r.Group("/v1")
 	{
 		groupV1.GET("/users", v1.GetUsers)
+		groupV1.POST("/users", v1.CreateUser)
 		groupV1.DELETE("/users/:id", v1.DeleteUser)
+
 	}
 
 	groupV2 := r.Group("/v2")
