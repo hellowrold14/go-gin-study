@@ -1,6 +1,7 @@
 package service
 
 import (
+	"github.com/acmestack/gorm-plus/gplus"
 	"github.com/cody/go-demo1/common"
 	"github.com/cody/go-demo1/model"
 	"github.com/cody/go-demo1/repository"
@@ -18,6 +19,17 @@ func NewUserService() *UserService {
 
 func (s *UserService) GetAllUsers(param *common.PageParam, condition any) common.PageResult[model.User] {
 	return s.userRepository.GetUsersByPage(param, condition)
+}
+
+func (s *UserService) GetAllUsersByGPlus(param *common.PageParam, condition any) common.PageResult[model.User] {
+	p := gplus.NewPage[model.User](param.Page, param.PageSize)
+	query, _ := gplus.NewQuery[model.User]()
+	//query.Select(condition)
+	p, _ = gplus.SelectPageGeneric(p, query)
+	return common.PageResult[model.User]{
+		Total: p.Total,
+		Rows:  p.Records,
+	}
 }
 
 func (s *UserService) CreateUser(user *model.User) error {

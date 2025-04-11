@@ -41,17 +41,6 @@ func (r *UserRepository) DeleteUser(id any) error {
 }
 
 func (r *UserRepository) GetUsersByPage(param *common.PageParam, condition any) common.PageResult[model.User] {
-	var users []model.User
-	var total int64
-	offset := (param.Page - 1) * param.PageSize
-
-	// 先查询总记录数
-	r.db.Model(&model.User{}).Count(&total)
-
-	// 分页查询用户
-	r.db.Where(condition).Offset(offset).Limit(param.PageSize).Find(&users)
-	return common.PageResult[model.User]{
-		Total: total,
-		Rows:  users,
-	}
+	result := common.Paginate[model.User](r.db, param, condition)
+	return result
 }

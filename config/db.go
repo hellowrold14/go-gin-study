@@ -1,6 +1,7 @@
 package config
 
 import (
+	"github.com/acmestack/gorm-plus/gplus"
 	"github.com/cody/go-demo1/model"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -36,5 +37,8 @@ func InitDB(config Config) *gorm.DB {
 	if err != nil {
 		panic("failed to auto migrate")
 	}
+
+	// 初始化gplus
+	gplus.Init(db)
 	return db
 }

@@ -19,7 +19,7 @@ func GetUsers(c *gin.Context) {
 	if err != nil {
 		return
 	}
-	pageResult := service.NewUserService().GetAllUsers(pageParam, user)
+	pageResult := service.NewUserService().GetAllUsersByGPlus(pageParam, user)
 	utils.OK(pageResult, c)
 }
 
