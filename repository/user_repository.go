@@ -40,7 +40,7 @@ func (r *UserRepository) DeleteUser(id any) error {
 	return result.Error
 }
 
-func (r *UserRepository) GetUsersByPage(param common.PageParam, condition any) common.PageResult[model.User] {
+func (r *UserRepository) GetUsersByPage(param *common.PageParam, condition any) common.PageResult[model.User] {
 	var users []model.User
 	var total int64
 	offset := (param.Page - 1) * param.PageSize

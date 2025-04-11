@@ -15,7 +15,7 @@ func GetUsers(c *gin.Context) {
 		return
 	}
 	pageParam := common.NewPageParam()
-	err = c.ShouldBindQuery(&pageParam)
+	err = c.ShouldBindQuery(pageParam)
 	if err != nil {
 		return
 	}

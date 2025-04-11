@@ -16,7 +16,7 @@ func NewUserService() *UserService {
 	}
 }
 
-func (s *UserService) GetAllUsers(param common.PageParam, condition any) common.PageResult[model.User] {
+func (s *UserService) GetAllUsers(param *common.PageParam, condition any) common.PageResult[model.User] {
 	return s.userRepository.GetUsersByPage(param, condition)
 }
 

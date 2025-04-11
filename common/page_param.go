@@ -5,8 +5,8 @@ type PageParam struct {
 	PageSize int `json:"pageSize" form:"pageSize"` // 每页大小
 }
 
-func NewPageParam() PageParam {
-	return PageParam{
+func NewPageParam() *PageParam {
+	return &PageParam{
 		Page:     1,
 		PageSize: 10,
 	}
